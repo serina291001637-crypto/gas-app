@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100vh;
+    }
+    iframe {
+      border: none;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <iframe id="app"></iframe>
+
+  <script>
+    const GAS_URL = "https://script.google.com/macros/s/https://script.google.com/macros/s/AKfycbxLW89505KlCSL1xrJ8YEcoGZ-pA9hqW1b33HtnTZZz7jAHeWMebIHVI9wTcqFZj3xI/exec/exec";
+    document.getElementById("app").src = GAS_URL + location.search;
+  </script>
+</body>
+</html>
