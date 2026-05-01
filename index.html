@@ -1,61 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
   <style>
-    * {
+    html,
+    body {
       margin: 0;
       padding: 0;
+      width: 100%;
       height: 100%;
       overflow: hidden;
+      background: #fff;
     }
 
     body {
-      width: 100%;
-      height: 100vh;
+      position: fixed;
+      inset: 0;
     }
 
-    iframe {
-      border: none;
+    #app {
+      position: fixed;
+      inset: 0;
       width: 100%;
-      height: 100%;
+      height: 100dvh;
+      border: 0;
+      display: block;
     }
 
-    /* ローディング（任意だけどおすすめ） */
     #loading {
       position: fixed;
-      top: 0;
-      left: 0;
+      inset: 0;
       width: 100%;
-      height: 100%;
+      height: 100dvh;
       background: #ffffff;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       z-index: 9999;
       font-size: 18px;
       font-weight: bold;
+    }
+
+    @supports not (height: 100dvh) {
+      #app,
+      #loading {
+        height: 100vh;
+      }
     }
   </style>
 </head>
 
 <body>
+  <div id="loading">読み込み中...</div>
 
-<div id="loading">読み込み中...</div>
+  <iframe
+    id="app"
+    src="https://script.google.com/macros/s/AKfycbyly-vfPEmGZevctpnpPL-rdq-ogkvdvJawsQ_dTRsBP4lD1H9KQwnRxRd4GT3gFjqz/exec"
+    allowfullscreen>
+  </iframe>
 
-<iframe id="app"></iframe>
+  <script>
+    const iframe = document.getElementById("app");
 
-<script>
-  const GAS_URL = "https://script.google.com/macros/s/AKfycbyly-vfPEmGZevctpnpPL-rdq-ogkvdvJawsQ_dTRsBP4lD1H9KQwnRxRd4GT3gFjqz/exec";
+    iframe.src =
+      "https://script.google.com/macros/s/AKfycbyly-vfPEmGZevctpnpPL-rdq-ogkvdvJawsQ_dTRsBP4lD1H9KQwnRxRd4GT3gFjqz/exec" +
+      location.search;
 
-  const iframe = document.getElementById("app");
-  iframe.src = GAS_URL + location.search;
-
-  iframe.onload = function() {
-    document.getElementById("loading").style.display = "none";
-  };
-</script>
-
+    iframe.onload = function () {
+      document.getElementById("loading").style.display = "none";
+    };
+  </script>
 </body>
 </html>
